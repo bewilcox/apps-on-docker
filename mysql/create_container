@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Link :  https://github.com/panamax-docker/panamax-docker-mysql
+
+# PARAMETERS
+#$1 container name
+
+# Arguments verification
+if [ $# -ne 1 ]; then
+    echo "ERROR : One argument expected --> Container name"
+    exit 65
+fi
+
+echo "Create and run $1 container ..."
+sudo docker run -d -p 3306:3306 --name $1 -e MYSQL_ROOT_PASSWORD=admin -e MYSQL_DATABASE=test -e MYSQL_USER=testuser -e MYSQL_PASSWORD=testpwd panamax/panamax-docker-mysql

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Link :  https://github.com/panamax-docker/panamax-docker-mysql
+# Link :  https://github.com/orchardup/docker-mysql
 
 # PARAMETERS
 #$1 container name
@@ -12,4 +12,10 @@ if [ $# -ne 1 ]; then
 fi
 
 echo "Create and run $1 container ..."
-sudo docker run -d -p 3306:3306 --name $1 -e MYSQL_ROOT_PASSWORD=admin -e MYSQL_DATABASE=test -e MYSQL_USER=testuser -e MYSQL_PASSWORD=testpwd panamax/panamax-docker-mysql
+ROOT_PWD=admin
+DB=test
+USER=testuser
+USER_PWD=testpwd
+ARGS=--skip-name-resolve
+sudo docker run -d -p 3306:3306 --name $1 -e MYSQL_ROOT_PASSWORD=$ROOT_PWD -e MYSQL_DATABASE=$DB -e MYSQL_USER=$USER -e MYSQL_PASSWORD=$USER_PWD  -e MYSQLD_ARGS=$ARGS  orchardup/mysql
+
